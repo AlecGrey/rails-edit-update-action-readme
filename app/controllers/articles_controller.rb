@@ -14,15 +14,14 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    @article.title = params[:title]
-    @article.description = params[:description]
-    @article.save
+    @article = Article.create(sanitized_params)
     redirect_to article_path(@article)
   end
 
   # add edit and update methods here
 
   def edit
+    render new_article_path
   end
 
   def update
